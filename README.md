@@ -1,7 +1,7 @@
 ## 프로젝트 진행 방법
 
 ### 1. fork하기
-(https://github.com/NHNNEXT/2015-02-HTML5/)
+(https://github.com/NHNNEXT/2015-02-HTML5/) jjung
 
 ### 2. fork한 프로젝트 클론
 ```
