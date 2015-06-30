@@ -4,6 +4,8 @@
 		<meta charset="utf-8">
 		<title>HTML5 Programming - 1 Class</title>
 		<link rel="stylesheet" href="asset/base.css">
+		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="asset/handlebars-v3.0.3.js"></script>
 		<script type="text/javascript" src="asset/todolist.js"></script>
 	</head>
 	<body>
@@ -17,7 +19,7 @@
 				<label for="toggle-all">Mark all as complete</label>
 				<ul id="todo-list">
 
-<!-- 
+<!--
 					#완료했을때
 					<li class="completed">
 						<div class="view">
@@ -26,16 +28,16 @@
 							<button class="destroy"></button>
 						</div>
 					</li>
+-->
 
-					#일반 TODO
 					<li class="{}">
 						<div class="view">
 							<input class="toggle" type="checkbox" {}>
-							<label>타이틀</label>
+							<label>{{title}}</label>
 							<button class="destroy"></button>
 						</div>
 					</li>
- -->
+
 
 				</ul>
 			</section>
