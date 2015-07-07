@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>TODO</title>
+    </head>
+    <body>
+                
+<!--    todo-list를 입력받는 란                   -->
+        <input id="new-todo" placeholder="What needs to be done?" autofocus>
+                
+<!--    새로 추가되는 list들은 아래에 추가된다.        -->
+        <ul id="todo-list"></ul>
+        
+<!--    template 시작                           -->
+        <script id="todo-template" type="text/x-handlebars-template">
+            <li>
+                {{#newtodo}}
+                <div class="view">
+                    <input class="toggle" type="checkbox">
+                    <label>{{content}}</label>
+                    <button class="destroy"></button>
+                </div>
+                {{/newtodo}}
+            </li>
+        </script>
+<!--    template 끝                             -->
+        
+        <script src="handlebars-v3.0.3.js"></script>
+        <script src="jquery-1.11.3.js"></script>
+        <script type="text/javascript" src="todo.js"></script>
+    </body>
+</html>
