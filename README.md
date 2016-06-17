@@ -1,5 +1,5 @@
 ## 프로젝트 진행 방법
-
+chiho's
 ### 1. fork하기
 (https://github.com/NHNNEXT/2015-02-HTML5/)
 
