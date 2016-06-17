@@ -1,5 +1,8 @@
 
 # 첫 번째 [링크](http://portal.nhnnext.org/streaming/2014/2%ED%95%99%EA%B8%B0/HTML5%20Programming%20-%201/%EC%A0%84%EC%9A%A9%EC%9A%B0/322)
+
+# 새로운 학기 시작!
+
 1. 할일에 넣고 엔터를 치면 할일이 추가된다
 	- 이벤트를 할당한다.(addEventListener)
 	- 할일을 추가한다.(appendChild,insertAdjacentHTML)
