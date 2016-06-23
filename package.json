@@ -1,0 +1,28 @@
+{
+  "name": "2016-html5",
+  "version": "1.0.0",
+  "description": "\"html5 4weeks project\"",
+  "main": "main.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "test",
+    "webpack-dev-server": "node node_modules/webpack-dev-server/bin/webpack-dev-server --port 8089"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kgblue38/2015-02-HTML5.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kgblue38/2015-02-HTML5/issues"
+  },
+  "homepage": "https://github.com/kgblue38/2015-02-HTML5#readme",
+  "devDependencies": {
+    "handlebars": "^4.0.5",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
