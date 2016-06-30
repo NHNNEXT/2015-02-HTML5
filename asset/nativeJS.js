@@ -10,7 +10,6 @@ var newTodoList =
 function addTODO(e){
 
   if(e.keyCode === ENTER_KEY){
-
     var content = document.getElementById("new-todo").value;
     var newTodo = document.createElement("li");
     newTodo.innerHTML = newTodoList.replace(/\{\{input-value\}\}/gi, content);
