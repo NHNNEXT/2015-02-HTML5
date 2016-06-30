@@ -5,7 +5,6 @@ var TODO = (function(window) {
 	var ENTER_KEY = 13;
 
 	function init(){
-
 		$("#new-todo").on("keydown", addListTodo);
 		$("#todo-list").on("click", ".toggle", completed);
 		$("#todo-list").on("click", ".destroy", destroy);
@@ -15,7 +14,7 @@ var TODO = (function(window) {
 
 		var todoName = $(e.target).val();
 		if(e.which === ENTER_KEY && todoName !== ""){
-			$(templateaddTemplate({"todo":todoName})).appendTo("#todo-list");
+			$(template.addTemplate({"todo":todoName})).appendTo("#todo-list");
 			$(e.target).val("");
 		}
 	}
@@ -52,5 +51,5 @@ var TODO = (function(window) {
 })(window);
 
 $(function(){
-	TODO.init();	
+	TODO.init();
 });
