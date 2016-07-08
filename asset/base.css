@@ -193,12 +193,13 @@ label[for='toggle-all'] {
 	position: relative;
 	font-size: 24px;
 	border-bottom: 1px dotted #ccc;
-	-webkit-transition: opacity 1s;
-	transition: opacity 1s;
+	opacity :0;
+	-webkit-transition: opacity 2s;
+	transition: opacity 2s;
 }
 
 #todo-list li.appending{
-	opacity: 0;
+	opacity : 1;
 }
 
 #todo-list li.deleting{
