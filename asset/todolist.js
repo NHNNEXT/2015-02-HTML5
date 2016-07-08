@@ -35,29 +35,29 @@ function completeTodo(e){
 }
 
 function addOpacity(time){
-    var light = time  / 1000;
+    time = Date.now();
+    var light = (time - start) / 400;
     ele = document.querySelector(".appending");
-    console.log(ele.style.opacity);
     ele.style.opacity = light;
-    // ele.setAttribute('style', ("opacity:light"));
+    console.log(ele.style.opacity);
     if(light > 1){
+      ele.style.opacity = "";
       return;
     }
   requestAnimationFrame(addOpacity);
 }
-function remove(e){
-  e.remove();
-}
+
+
 
 function removeTodo(e){
   //TODO : setInterval과 requestAnimationFrame의 차이를 확인해보고, 두 가지 모두 구현해야 한다.
   //TODO : event Delegate를 native로 구현해.
   var li = e.target.parentNode.parentNode;
-  li.style = "";
-  li.className += ' deleting';
-  setTimeout(function(){
-    document.querySelector(".deleting").addEventListener("transitionend", remove(li));
-  }, 1500);
+  // ele.style.opacity = null;
+  li.classList.add('deleting');
+  document.querySelector(".deleting").addEventListener("transitionend", function(){
+    li.remove();
+  });
   // e.target.parentNode.parentNode.outerHTML= "";
   // e.target.parentNode.parentNode.parentNode.removeChild();
 }
