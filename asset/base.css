@@ -204,8 +204,9 @@ label[for='toggle-all'] {
 }
 
 #todo-list li.deleting{
-	max-height: 0;
+	max-height: 0px;
 	opacity: 0;
+	overflow: hidden;
 }
 
 #todo-list li:last-child {
