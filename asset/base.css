@@ -193,8 +193,10 @@ label[for='toggle-all'] {
 	position: relative;
 	font-size: 24px;
 	border-bottom: 1px dotted #ccc;
-	-webkit-transition: opacity 1s;
-	transition: opacity 1s;
+	opacity: 1;
+	max-height: 58px;
+	-webkit-transition: max-height 1s, opacity 1s;
+	transition: max-height 1s, opacity 1s;
 }
 
 #todo-list li.appending{
@@ -202,7 +204,9 @@ label[for='toggle-all'] {
 }
 
 #todo-list li.deleting{
+	max-height: 0px;
 	opacity: 0;
+	overflow: hidden;
 }
 
 #todo-list li:last-child {
