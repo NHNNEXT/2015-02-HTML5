@@ -31,13 +31,32 @@ var TODOSync = {
       var keys = Object.keys(localStorage);
       for(var i=0; i<keys.length; i++){
           var localObjects = JSON.parse(localStorage.getItem(keys[i]));
-          if(data.sync == false){ //
-              TODOSync.add(data.content, function(json){});
-              if(data.completed == "1"){
-                  TODOSync.completed(localObjects, function(){
-                      console.log("completed success");
-                  });
-              }
+          console.log("로컬 객체");
+          console.log(localObjects);
+          if(localObjects.sync == false){ //
+              TODOSync.add(localObjects.content, function(json){});
+              TODOSync.get(function(data){
+                  //data를 불러오고,
+                  console.log(data);
+                  for(j in data){
+                    console.log("들어옴");
+                    console.log(data[j].todo + localObjects.content);
+                    if(localObjects.completed == "1" && data[j].todo == localObjects.content){
+                      console.log("들어옴2");
+                      data[j].completed = 1;
+                      TODOSync.completed(data[j], function(){
+                        console.log("completed success");
+                      })
+                    }
+                  }
+              });
+
+
+              // if(localObjects.completed == "1"){
+              //     TODOSync.completed(localObjects, function(){
+              //         console.log("completed success");
+              //     });
+              // }
           }
       }
       localStorage.clear();
@@ -91,7 +110,6 @@ var TODOSync = {
     }
   },
 
-
   completed : function(todo, callback){
 
    if(navigator.onLine){
@@ -108,6 +126,7 @@ var TODOSync = {
        var offlineTodo = JSON.parse(localStorage.getItem(todo.id));
        offlineTodo.completed = offlineTodo.completed == "0" ? "1" : "0";
        localStorage.setItem(offlineTodo.id, JSON.stringify(offlineTodo));
+       console.log(localStorage.getItem(todo.id));
        callback({completed:offlineTodo.completed});
     }
   },
