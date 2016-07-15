@@ -7,7 +7,7 @@ var newTodoList =
         "<button class='destroy'></button>"+
     "</div>";
 
-    function loadTodo(){
+function loadTodo(){
       TODOSync.get(function(data){
         loadTodoHtmlMaker(data);
       });
@@ -94,7 +94,7 @@ function removeHTMLMaker(li){
      });
 }
 
-//--------------------- HTML Maker ------------------------------//
+//-------------------------------------------------------------//
 
 //--------------------- filtering functions ---------------------//
 
@@ -154,7 +154,7 @@ function changeURLFilter(e){
   }
 }
 
-//--------------------- filtering functions ---------------------//
+//---------------------------------------------------//
 
 document.addEventListener("DOMContentLoaded", function(){
     loadTodo();
