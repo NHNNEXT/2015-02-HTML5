@@ -1,5 +1,8 @@
 ## 프로젝트 진행 방법
 
+### 0. Paul-Kim의 브랜치 입니다.
+냥냥냥
+
 ### 1. fork하기
 (https://github.com/NHNNEXT/2015-02-HTML5/)
 
@@ -27,7 +30,7 @@ ex) git checkout -b mixed
 
 ### 4. 개발 시작
 ```
-git pull upstream 본인_아이디 
+git pull upstream 본인_아이디
 git rebase upstream/본인_아이디
 ```
 [TODO](https://github.com/NHNNEXT/2015-02-HTML5/blob/master/TODO.md)
@@ -47,6 +50,11 @@ ex) git push origin mixed
 ```
 
 ### 6. 교수한데 pull request
+```
+git push upstream 본인_아이디
+ex) git push upstream 본인_아이디
+
+```
 [참고](https://github.com/NHNNEXT/2015-02-HTML5/wiki/PR%EB%B3%B4%EB%82%B4%EB%8A%94-%EB%B0%A9%EB%B2%95)
 
 ### 7. 교수의 review을 확인 후 수정하고 4번 부터 시작.
