@@ -9,58 +9,47 @@ var TODOSync = {
     window.addEventListener("offline", this.onofflineListener);
   },
 
+  remove_List_When_Change_To_Online : function(){
+    var removedList = JSON.parse(localStorage.getItem('removed'));
+    if(removedList.length > 0){
+      for(i in removedList) {
+            TODOSync.remove({
+               "id": removedList[i]
+           }, function() {
+               console.log('remove finished!');
+           });
+        }
+    }
+    localStorage.removeItem('removed');
+  },
+
+  sync_Completed_Status_When_Cahnge_To_Online : function(){
+    var keys = Object.keys(localStorage);
+    for(var i=0; i<keys.length; i++){
+        var localObjects = JSON.parse(localStorage.getItem(keys[i]));
+        if(localObjects.sync == false){ //
+            TODOSync.add(localObjects.content, function(json){});
+            TODOSync.get(function(data){
+                for(j in data){
+                  if(localObjects.completed == "1" && data[j].todo == localObjects.content){
+                    data[j].completed = 1;
+                    TODOSync.completed(data[j], function(){
+                      console.log("completed success");
+                    })
+                  }
+                }
+            });
+        }
+    }
+  },
+
   onofflineListener : function(){
     document.getElementById("header").classList[navigator.onLine?"remove":"add"]("offline");
     if(navigator.onLine){
       console.log("현재 온라인 작업 중");
-      /************오프라인에서 삭제했던 리스트들 서버에서도 삭제************/
-      var removedList = JSON.parse(localStorage.getItem('removed'));
-      if(removedList.length > 0){
-        for(i in removedList) {
-              TODOSync.remove({
-                 "id": removedList[i]
-             }, function() {
-                 console.log('remove finished!');
-             });
-          }
-      }
-      localStorage.removeItem('removed');
-      /***************************************************************/
-
-      /************오프라인에서 completed한 리스트들 서버에서도 동기화************/
-      var keys = Object.keys(localStorage);
-      for(var i=0; i<keys.length; i++){
-          var localObjects = JSON.parse(localStorage.getItem(keys[i]));
-          console.log("로컬 객체");
-          console.log(localObjects);
-          if(localObjects.sync == false){ //
-              TODOSync.add(localObjects.content, function(json){});
-              TODOSync.get(function(data){
-                  //data를 불러오고,
-                  console.log(data);
-                  for(j in data){
-                    console.log("들어옴");
-                    console.log(data[j].todo + localObjects.content);
-                    if(localObjects.completed == "1" && data[j].todo == localObjects.content){
-                      console.log("들어옴2");
-                      data[j].completed = 1;
-                      TODOSync.completed(data[j], function(){
-                        console.log("completed success");
-                      })
-                    }
-                  }
-              });
-
-
-              // if(localObjects.completed == "1"){
-              //     TODOSync.completed(localObjects, function(){
-              //         console.log("completed success");
-              //     });
-              // }
-          }
-      }
+      TODOSync.remove_List_When_Change_To_Online();
+      TODOSync.sync_Completed_Status_When_Cahnge_To_Online();
       localStorage.clear();
-      /***************************************************************/
     }else{
       console.log("현재 오프라인 작업 중");
       //removed된 TODOList id가 들어갈 localStorage 생성
