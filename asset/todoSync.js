@@ -1,46 +1,50 @@
 var TODOSync = {
 
-  url : "http://128.199.76.9:8002/:Junnie-Jobs/",
+  sync: navigator.onLine? true:false,
+  init : function(){
+    window.addEventListener("online", this.onofflineListener);
+    window.addEventListener("offline", this.onofflineListener);
+  },
+
+  onofflineListener : function(){
+    document.getElementById("header").classList[navigator.onLine?"remove":"add"]("offline");
+    if(navigator.onLine){
+      console.log("현재 온라인 작업 중");
+      TODOSyncOnline.onlineListener();
+    }else{
+      console.log("현재 오프라인 작업 중");
+      TODOSyncOffline.offlineListener();
+    }
+  },
 
   get : function(callback){
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", this.url, true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded;charset=UTF-8")
-    xhr.addEventListener("load", function(e){
-      callback(JSON.parse(xhr.responseText));
-    })
-    xhr.send(null);
+     TODOSyncOnline.getAjax(callback);
   },
 
   add : function(todo, callback){
-
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", this.url, true);
-      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded;charset=UTF-8")
-      xhr.addEventListener("load", function(e){
-        callback(JSON.parse(xhr.responseText));
-      })
-      xhr.send("todo="+todo);
+    if(navigator.onLine){
+      TODOSyncOnline.addAjax(todo, callback);
+    }else{
+      TODOSyncOffline.add(todo, callback);
+    }
   },
 
   completed : function(todo, callback){
-    var xhr = new XMLHttpRequest();
-    xhr.open("PUT", this.url+todo.id, true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded;charset=UTF-8");
-    xhr.addEventListener("load", function(e){
-      callback(JSON.parse(xhr.responseText));
-    });
-    xhr.send("completed="+todo.completed);
-
+   if(navigator.onLine){
+      TODOSyncOnline.completedAjax(todo, callback);
+    }else{
+      TODOSyncOffline.completed(todo, callback);
+    }
   },
 
   remove : function(todo, callback){
-    var xhr = new XMLHttpRequest();
-    xhr.open("DELETE", this.url+todo.id, true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded;charset=UTF-8");
-    xhr.addEventListener("load", function(e){
-      callback();
-    });
-    xhr.send(null);
-  }
+     if(navigator.onLine){
+       TODOSyncOnline.removeAjax(todo, callback);
+     }else{
+      TODOSyncOffline.remove(todo);
+     }
+  },
+
+
 }
+TODOSync.init();
