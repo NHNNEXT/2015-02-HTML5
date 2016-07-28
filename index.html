@@ -5,18 +5,6 @@
 		<title>HTML5 Programming - 1 Class</title>
 		<link rel="stylesheet" href="asset/base.css">
 
-		<style>
-			.fadeOut{
-				opacity: 0; <!--트랜지션이 적용될 때 애니메이션이 되는게 아니고 적용된 트랜지션의 속성이 변경될 떄 애니메이션이 트리거 된다.-->
-			}
-
-			따라서 기본적으로 뭔저 뭘 해야 하냐면
-			트랜지션이 트리거 되는 시점은 그 속성이 변경되는 시점이다!
-
-			.todo-list li {
-				transition : opacity 1s;
-			}
-		</style>
 	</head>
 	<body>
 		<section id="todoapp">
@@ -55,12 +43,13 @@
 			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
 		</footer>
 
-		<!-- <script src="lib/jquery-1.12.0.js"></script>
-		<script src="lib/handlebars-v4.0.5.js"></script> -->
 		<script type="text/javascript" src="asset/todoSync.js"></script>
-		<script type="text/javascript" src="asset/nativeJS.js"></script>
-		<!-- <script type="text/javascript" src="asset/todolist.js"></script>
-		<script type="text/javascript" src="asset/template.js"></script> -->
+		<script type="text/javascript" src="asset/todoSyncOnline.js"></script>
+		<script type="text/javascript" src="asset/todoSyncOffline.js"></script>
+		<script type="text/javascript" src="asset/todolist.js"></script>
+		<script type="text/javascript" src="asset/todolistFilter.js"></script>
+		<script type="text/javascript" src="asset/todolistHtmlMaker.js"></script>
+
 
 
 		<!--
