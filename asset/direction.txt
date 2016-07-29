@@ -9,3 +9,86 @@
 
 //TODO : setInterval과 requestAnimationFrame의 차이를 확인해보고, 두 가지 모두 구현해야 한다.
 //TODO : event Delegate를 native로 구현해.
+
+
+function ajax (){
+
+  xhr.addEventListener("error", reject);
+}
+
+ajax(url).
+then(function(){
+
+}).
+catch(function(){
+
+});
+
+fetch(url).
+then(function(){
+  return res.json();
+}).
+then(function(){
+
+}).
+catch(function(){
+
+});
+
+
+
+//bad
+
+var DataStore = {
+"onlineGET": function(){
+
+},
+"offlineGET" : function(){
+
+},
+
+}
+
+TodoList = {
+"add" : function(){
+if(navigator.onLine){
+  DataStore.onlineGET
+}
+}
+}
+
+//good
+var DataStore = {
+  "init" : function(){
+  this.status = "online";
+    window.addEventListener("online", function(){
+      this.status = "online";
+    }).bind(this);
+    window.addEventListener("offline", function(){
+
+    });
+  }
+  "add" : function(){
+    if(navigator.onLine){
+    this.onlineGET();
+    }else{
+    this.offLineGET();
+    }
+    window[this.status].add();
+  },
+  "onlineGET":function(){
+
+  }
+};
+
+var Offline = {
+  add:function(){
+
+  }
+};
+
+var Online = {
+  add:function(){
+
+  }
+}

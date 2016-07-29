@@ -4,16 +4,32 @@
   var filter = document.getElementById("filters");
   var template = '<li class="{{#if completed}}completed {{/if}}appending" data-id={{data-id}}><div class="view"><input class="toggle" type="checkbox"{{#if completed}}checked{{/if}}><label>{{inputValue}}</label><button class="destroy"></button></div><input class="edit" value={{inputValue}}></li>'
   var template_up = Handlebars.compile(template);
-
+  var initUrl = "http://128.199.76.9:8002/skychb/";
   var ENTER = 13;
   var start = 0;
   var ele = "";
 
 var TODOSync = {
-  get : function(todo){
-    var xhr  = new XMLHttpRequest();
-    xhr.open("GET", "http://128.199.76.9:8002/skychb", true);
+  onofflineListener:function(){
+    document.getElementById("header").classList[navigator.online?"remove":"add"]("offline");
+    // if(navigator.online){
+    //   document.getElementById("header").classList.remove("offline");
+    // }else{
+    //   document.getElementById("header").classList.add("offline");
+    // }
+    // as same
+    // if(navigator.online){
+    //  document.getElementById("header").classList["add"]("offline")
+    // will work.
+  },
+  initXHR : function(method, url){
+    var xhr = new XMLHttpRequest();
+    xhr.open(method, url, true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded;charset=UTF=8");
+    return xhr;
+  },
+  get : function(todo){
+    var xhr = this.initXHR("GET", initUrl);
     xhr.addEventListener("load", function(e){
       var list = document.getElementById("todo-list");
       var json = JSON.parse(e.target.response);
@@ -25,26 +41,17 @@ var TODOSync = {
     xhr.send(null);
     // xhr.send("todo="+todo);
   },
-  onofflineListener:function(){
-    if(navigator.online){
-      document.getElementById("header").classList.remove("offline");
-    }else{
-      document.getElementById("header").classList.add("offline");
+  add : function(todo, callback){
+    if(navigator.onLine){
+      var xhr = this.initXHR("POST", initUrl);
+      xhr.addEventListener("load", function(e){
+          callback(JSON.parse(xhr.responseText));
+      });
+      xhr.send("todo="+todo);
     }
   },
-  add : function(todo, callback){
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://128.199.76.9:8002/skychb", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded;charset=UTF=8");
-    xhr.addEventListener("load", function(e){
-        callback(JSON.parse(xhr.responseText));
-    });
-    xhr.send("todo="+todo);
-  },
   complete : function(complete, completed, callback){
-    var xhr = new XMLHttpRequest();
-    xhr.open("PUT", "http://128.199.76.9:8002/skychb/" + complete.dataset.id, true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded;charset=UTF=8");
+    var xhr = this.initXHR("PUT", initUrl+complete.dataset.id);
     xhr.addEventListener("load", function(e){
       callback(JSON.parse(xhr.responseText));
     })
@@ -52,9 +59,7 @@ var TODOSync = {
     xhr.send("completed="+completed);
   },
   remove : function(id){
-    var xhr = new XMLHttpRequest();
-    xhr.open("DELETE", "http://128.199.76.9:8002/skychb/" + id, true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded;charset=UTF=8");
+    var xhr = this.initXHR("DELETE", initUrl+id);
     xhr.send("");
   }
 };
@@ -68,6 +73,7 @@ var TODO = {
     filter.addEventListener('click', this.state.bind(this));
     window.addEventListener("popstate", this.URLFilter.bind(this));
     //console.log로 씌워도 동작하는 이유는?
+    TODOSync.onofflineListener();
   },
 
   addTodo:function(e){
@@ -75,11 +81,14 @@ var TODO = {
         var key = e.which || e.keyCode;
         if (key === ENTER && todo.value) {
           start = Date.now();
+          console.log(todo);
           var list = document.getElementById("todo-list");
-          TODOSync.add(todo.value, function(json){
-            list.insertAdjacentHTML('afterbegin', template_up({"inputValue":todo.value, "data-id":json.insertId}));
-            todo.value= "";
-          });
+          if(navigator.onLine){
+            TODOSync.add(todo.value, function(json){
+              list.insertAdjacentHTML('afterbegin', template_up({"inputValue":todo.value, "data-id":json.insertId}));
+              todo.value= "";
+            });
+          }
           TODO.addOpacity();
         }
     }
@@ -88,21 +97,21 @@ var TODO = {
   completeTodo:function(e){
     var checked = e.target.checked?"1":"0";
     var target = e.target.parentNode.parentNode;
-    console.log(checked);
-    console.log(e.target.parentNode.parentNode.dataset);
 
     TODOSync.complete(target, checked, function(json){
       // e.target.parentNode.parentNode.classList.toggle("completed");
       if(checked){
-        e.target.parentNode.parentNode.classList += "completed";
+        e.target.parentNode.parentNode.classList.add("completed");
+        console.log("completed added");
       }else{
-        e.target.parentNode.parentNode.classList = "";
+        e.target.parentNode.parentNode.classList.remove("completed");
       }
     });
   },
 
   addOpacity:function(time){
     time = Date.now();
+    console.log("deleting...");
     var light = (time - start) / 400;
     ele = document.querySelector(".appending");
     ele.style.opacity = light;
@@ -125,9 +134,11 @@ var TODO = {
   },
   eventDelegate:function(e){
     if(e.target.classList.contains("toggle")){
+      console.log("completing?");
       TODO.completeTodo(e);
     }
     else if (e.target.classList.contains("destroy")){
+      console.log("deleting?");
       TODO.removeTodo(e);
     }
   },
