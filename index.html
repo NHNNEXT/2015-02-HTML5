@@ -1,64 +1,58 @@
 <!doctype html>
-<html lang="en" data-framework="javascript">
+<html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>HTML5 Programming - 1 Class</title>
-		<link rel="stylesheet" href="asset/base.css">
-		<script type="text/javascript" src="asset/todolist.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>HTML5 • TodoMVC</title>
+		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
+		<link rel="stylesheet" href="css/app.css">
 	</head>
 	<body>
-		<section id="todoapp">
-			<header id="header">
+		<section class="todoapp">
+			<header class="header">
 				<h1>todos</h1>
-				<input id="new-todo" placeholder="What needs to be done?" autofocus>
+				<input class="new-todo" placeholder="What needs to be done?" autofocus>
 			</header>
-			<section id="main">
-				<input id="toggle-all" type="checkbox">
+			<section class="main">
+				<input class="toggle-all" type="checkbox">
 				<label for="toggle-all">Mark all as complete</label>
-				<ul id="todo-list">
-<!-- 
-					#완료했을때
-					<li class="completed">
-						<div class="view">
-							<input class="toggle" type="checkbox" checked>
-							<label>타이틀</label>
-							<button class="destroy"></button>
-						</div>
-					</li>
-
-					#일반 TODO
-					<li class="{}">
-						<div class="view">
-							<input class="toggle" type="checkbox" {}>
-							<label>타이틀</label>
-							<button class="destroy"></button>
-						</div>
-					</li>
- -->
-
+				<ul class="todo-list">
+					<template id="todo-template">
+						<li>
+							<div class="view">
+								<input class="toggle" type="checkbox">
+								<label></label>
+								<button class="destroy"></button>
+							</div>
+							<input class="edit">
+						</li>
+					</template>
 				</ul>
 			</section>
-			<footer id="footer">
-				<span id="todo-count"></span>
-				<ul id="filters">
+			<footer class="footer">
+				<span class="todo-count"><strong>0</strong> item left</span>
+				<ul class="filters">
 					<li>
-						<a href="index.html" class="selected">All</a>
+						<a class="selected" href="#/">All</a>
 					</li>
 					<li>
-						<a href="active">Active</a>
+						<a href="#/active">Active</a>
 					</li>
 					<li>
-						<a href="completed">Completed</a>
+						<a href="#/completed">Completed</a>
 					</li>
 				</ul>
-				<button id="clear-completed">Clear completed</button>
+				<button class="clear-completed">Clear completed</button>
 			</footer>
 		</section>
-		<footer id="info">
+		<footer class="info">
 			<p>Double-click to edit a todo</p>
-			<p>Created by <a href="http://twitter.com/oscargodson">Oscar Godson</a></p>
-			<p>Refactored by <a href="https://github.com/cburgmer">Christoph Burgmer</a></p>
+			<p>Created by <a href="https://github.com/Byeol">Jaewon Seo</a></p>
 			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
 		</footer>
+		<script src="node_modules/traceur/bin/traceur.js"></script>
+		<script src="node_modules/traceur/bin/BrowserSystem.js"></script>
+		<script src="node_modules/traceur/src/bootstrap.js"></script>
+		<script type="module" src="js/app.js"></script>
 	</body>
 </html>
