@@ -1,7 +1,7 @@
 
   var todo = document.getElementById("new-todo");
   var list = document.getElementById("todo-list");
-
+  var filter = document.getElementById("filters");
   var template = '<li class="{{#if completed}}completed {{/if}}appending" data-id={{data-id}}><div class="view"><input class="toggle" type="checkbox"{{#if completed}}checked{{/if}}><label>{{inputValue}}</label><button class="destroy"></button></div><input class="edit" value={{inputValue}}></li>'
   var template_up = Handlebars.compile(template);
 
@@ -24,6 +24,13 @@ var TODOSync = {
     });
     xhr.send(null);
     // xhr.send("todo="+todo);
+  },
+  onofflineListener:function(){
+    if(navigator.online){
+      document.getElementById("header").classList.remove("offline");
+    }else{
+      document.getElementById("header").classList.add("offline");
+    }
   },
   add : function(todo, callback){
     var xhr = new XMLHttpRequest();
@@ -58,6 +65,8 @@ var TODO = {
     todo.addEventListener('keypress', this.addTodo);
     list.addEventListener('click', this.eventDelegate);
     TODOSync.get();
+    filter.addEventListener('click', this.state.bind(this));
+    window.addEventListener("popstate", this.URLFilter.bind(this));
     //console.log로 씌워도 동작하는 이유는?
   },
 
@@ -121,7 +130,62 @@ var TODO = {
     else if (e.target.classList.contains("destroy")){
       TODO.removeTodo(e);
     }
+  },
+  URLFilter:function(e){
+    console.log(e);
+    if(e.state){
+      var method = e.state.method;
+      if(method === "all"){
+        this.allView();
+      }else if(method === "active"){
+        this.activeView();
+      }else if(method === "completed"){
+        this.completedView();
+      }else{
+        this.allView();
+      }
+    }
+  },
+  state:function(e){
+    e.preventDefault();
+    var filterName = e.target.tagName.toLowerCase();
+    if(filterName =="a"){
+      var link = e.target.getAttribute("href");
+      if(link === "index.html"){
+        this.allView();
+      }else if(link ==="active"){
+        this.activeView();
+      }else if(link === "completed"){
+        this.completedView();
+      }
+    }
+  },
+  allView:function(){
+    document.getElementById("todo-list").className="";
+    this.selectNavigator(0);
+    history.pushState({"method":"all"}, null, "index.html");
+  },
+  activeView:function(){
+    document.getElementById("todo-list").className="all-active";
+    this.selectNavigator(1);
+    history.pushState({"method":"active"}, null, "index.html");
+  },
+  completedView : function(){
+    document.getElementById("todo-list").className="all-completed";
+    this.selectNavigator(2);
+    history.pushState({"method":"completed"}, null, "index.html");
+  },
+  selectNavigator : function(i){
+    var list = document.querySelectorAll("#filters a");
+    this.selectedIndex = 0 || i;
+    list[this.selectedIndex].classList.remove("selected");
+    list[i].classList.add("selected");
+    this.selectedIndex = i;
+    console.log(i);
   }
+
+
+
   // delegateFunc : { //array로 하면됨.
   //   "destory" : remove
   // },
