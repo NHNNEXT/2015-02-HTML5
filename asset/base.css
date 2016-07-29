@@ -193,8 +193,7 @@ label[for='toggle-all'] {
 	position: relative;
 	font-size: 24px;
 	border-bottom: 1px dotted #ccc;
-	-webkit-transition: opacity 1s;
-	transition: opacity 1s;
+	overflow: hidden;
 }
 
 #todo-list li.appending{
@@ -580,4 +579,14 @@ hr {
 		width: 550px;
 		margin: 130px auto 40px auto;
 	}
+}
+
+
+#test_div{
+	position: fixed;
+	top : 100px;
+	left :100px;
+	background-color: red;
+	width:100px;
+	height:100px;
 }
