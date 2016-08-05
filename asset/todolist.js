@@ -1,5 +1,5 @@
 
-  var todo = document.getElementById("new-todo");
+ = document.getElementById("new-todo");
   var list = document.getElementById("todo-list");
   var filter = document.getElementById("filters");
   var template = '<li class="{{#if completed}}completed {{/if}}appending" data-id={{data-id}}><div class="view"><input class="toggle" type="checkbox"{{#if completed}}checked{{/if}}><label>{{inputValue}}</label><button class="destroy"></button></div><input class="edit" value={{inputValue}}></li>'
