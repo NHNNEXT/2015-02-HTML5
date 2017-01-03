@@ -21,8 +21,8 @@ git remote add upstream https://github.com/NHNNEXT/2015-02-HTML5
 
 ### 3. 본인에 아이디로 브랜치를 만들고 checkout
 ```
-git checkout -b 본인_아이디
-ex) git checkout -b mixed
+git checkout -t 본인_아이디
+ex) git checkout -t mixed
 ```
 
 ### 4. 개발 시작
