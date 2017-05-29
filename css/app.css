@@ -1,0 +1,4 @@
+.todo-list.active li.completed,
+.todo-list.completed li:not(.completed) {
+	display: none;
+}
