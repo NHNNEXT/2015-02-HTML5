@@ -1,0 +1,28 @@
+{
+  "name": "html",
+  "version": "1.0.0",
+  "description": "### 1. fork하기 (https://github.com/NHNNEXT/2015-02-HTML5/)",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wkddngus5/HTML5.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wkddngus5/HTML5/issues"
+  },
+  "homepage": "https://github.com/wkddngus5/HTML5#readme",
+  "scripts": {
+    "build": "webpack entry.js bundle.js"
+  },
+  "devDependencies": {
+    "webpack": "^3.0.0"
+  }
+}
