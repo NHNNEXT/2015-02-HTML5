@@ -1,1 +1,3 @@
-var a;
+window.addEventListener('DOMContentLoaded', function() {
+    
+})

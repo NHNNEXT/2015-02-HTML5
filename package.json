@@ -1,0 +1,25 @@
+{
+  "name": "html5",
+  "version": "1.0.0",
+  "description": "todolist again",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bbq923/HTML5.git"
+  },
+  "author": "bbq923",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bbq923/HTML5/issues"
+  },
+  "homepage": "https://github.com/bbq923/HTML5#readme",
+  "dependencies": {
+    "handlebars": "^4.0.10"
+  }
+}
