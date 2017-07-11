@@ -10,14 +10,7 @@ function addTODO(e) {
             "todos": todos
         });
 
-        //string 값인 todoElement를 li DOM node 로 만들어준다
-        var el = document.createElement("li");
-        console.log(todoElement);
-        var start = todoElement.indexOf("<div");
-        var end = todoElement.lastIndexOf("</li>");
-
-        el.innerHTML = todoElement.substring(start, end);
-        todoList.insertBefore(el, todoList.firstChild);
+        todoList.insertAdjacentHTML("afterbegin", todoElement);
 
         this.value = "";
     }
