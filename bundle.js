@@ -65,71 +65,73 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__resource_js_addTodo__ = __webpack_require__(1);
 
 
-(function() {
-  const addTodo = new __WEBPACK_IMPORTED_MODULE_0__resource_js_addTodo__["a" /* default */]();
+var _addTodo = __webpack_require__(1);
+
+var _addTodo2 = _interopRequireDefault(_addTodo);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function entry() {
+  var addTodo = new _addTodo2.default();
 })();
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-// window.onload = () => {
-//   init();
-// }
-//
-// export default class addTodo {
-//   constructor() {
-//
-//   }
-// }
-//
-// const init = () => {
-//   const ENTER_KEY_CODE = 13;
-//   const todoTemplate = Handlebars.compile(document.querySelector("#todo-template").innerHTML);
-//   document.querySelector("#new-todo").addEventListener("keypress", e => {
-//     if(e.which == ENTER_KEY_CODE) {
-//       postTodo(e);
-//     }
-//   });
-//   const todoTemplate = Handlebars.compile(document.querySelector("#todo-template").innerHTML);
-//   const nowStep = todoTemplate({
-//     "todo": "aaaa"
-//   });
-//   console.log("NOW STEP: ", nowStep);
-// }
-//
-// const postTodo = e => {
-//   console.log("NEW-TODO: ", document.querySelector("#new-todo").value);
-// }
 
-class AddTodo {
-  constructor() {
-    console.log("asdf");
-    this.test = "TEST";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var AddTodo = function () {
+  function AddTodo() {
+    _classCallCheck(this, AddTodo);
+
+    this.ENTER_KEY_CODE = 13;
+    this.init();
   }
 
-  // init = () => {
-  //   document.querySelector("#new-todo").addEventListener("keypress", e => {
-  //   if (e.which == this.ENTER_KEY_CODE) {
-  //     this.postTodo(e);
-  //   }
-  //   });
-  // }
-  //
-  // postTodo = e => {
-  //   console.log("CLICK!");
-  // }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = AddTodo;
+  _createClass(AddTodo, [{
+    key: 'init',
+    value: function init() {
+      var _this = this;
 
+      document.querySelector('#new-todo').addEventListener('keypress', function (e) {
+        if (e.which === _this.ENTER_KEY_CODE) {
+          _this.postTodo();
+        }
+      });
+    }
+  }, {
+    key: 'postTodo',
+    value: function postTodo() {
+      console.log(document.querySelector('#new-todo').value);
+    }
+  }]);
+
+  return AddTodo;
+}();
+
+exports.default = AddTodo;
+
+
+var newTodo = "<li>" + "<div class=\"view\">" + "<input class=\"toggle\" type=\"checkbox\" {}>" + "<label>" + document.querySelector('#new-todo').value + "</label>" + "<button class=\"destroy\"></button>" + "</div>" + "</li>";
+
+var template = documnet.createElement("div");
+tempalte.innerHTML = newTodo;
+documnet.querySelector("#todo-list").appendChild(template);
 
 /***/ })
 /******/ ]);

@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -19,10 +19,14 @@
     "url": "https://github.com/wkddngus5/HTML5/issues"
   },
   "homepage": "https://github.com/wkddngus5/HTML5#readme",
-  "scripts": {
-    "build": "webpack entry.js bundle.js"
-  },
   "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.5.2",
+    "eslint": "^4.1.1",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-loader": "^1.8.0",
+    "eslint-plugin-import": "^2.6.1",
     "webpack": "^3.0.0"
   }
 }

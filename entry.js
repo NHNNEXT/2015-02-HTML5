@@ -1,5 +1,6 @@
-import AddTodo from "./resource/js/addTodo";
+import AddTodo from './resource/js/history';
 
-(function() {
+(function entry() {
+  console.log("asdf");
   const addTodo = new AddTodo();
-})();
+}());
