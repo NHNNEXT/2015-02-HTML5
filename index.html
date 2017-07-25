@@ -62,15 +62,15 @@
 		</footer>
 
 		<script id="todo-template" type="text/x-handlebars-template">
-			{{#todos}}
-			<li class="{{classname}}">
+			{{#each this}}
+			<li data-id="{{id}}" {{#if completed}}class="completed"{{/if}}>
 				<div class="view">
-					<input class="toggle" type="checkbox" {{#if checked}}checked{{/if}}>
-					<label>{{value}}</label>
+					<input class="toggle" type="checkbox" {{#if completed}}checked{{/if}}>
+					<label>{{todo}}</label>
 					<button class="destroy"></button>
 				</div>
 			</li>
-			{{/todos}}
+			{{/each}}
 		</script>
 
 		<script type="text/javascript" src="node_modules/handlebars/dist/handlebars.min.js"></script>
