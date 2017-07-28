@@ -3,12 +3,10 @@ var TODO = {
     URL : "http://128.199.76.9:8002/bbq923/todo",
 
     init : function() {
-        document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("new-todo").addEventListener("keydown", this.add.bind(this));
             document.getElementById("todo-list").addEventListener("click", this.complete.bind(this));
-            document.getElementById("todo-list").addEventListener("click", this.delete.bind(this));
+            document.getElementById("todo-list").addEventListener("click", this.destroy.bind(this));
             document.getElementById("todo-list").addEventListener("animationend", this.remove);
-        }.bind(this));
     },
     add : function(e) {
         if(e.keyCode === this.ENTER_KEYCODE && e.target.value !== "") {
@@ -56,7 +54,7 @@ var TODO = {
             });
         }
     },
-    delete : function(e) {
+    destroy : function(e) {
         if(e.target.classList.contains("destroy")) {
             var targetTODO = e.target.parentNode.parentNode;
             var url = this.URL + "/" + targetTODO.dataset.id;
@@ -86,4 +84,7 @@ var TODO = {
     }
 }
 
-TODO.init();
+
+document.addEventListener("DOMContentLoaded", function() {
+    TODO.init();
+});
