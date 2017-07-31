@@ -1,8 +1,19 @@
 var source = document.getElementById("todo-template").innerHTML;
 var template = Handlebars.compile(source);
-var data = { todos: [
-        {classname: "completed", checked: 1, value: "빨래하기"},
-        {classname: "completed", checked: 1, value: "공부하기"},
-        {classname: "", checked: 0, value: "개 산책시키기"}
-    ]};
-document.getElementById("todo-list").innerHTML = template(data);
+
+var myInit = {
+    method: 'GET',
+    headers: new Headers({"Content-Type": "application/json"}),
+    mode: 'cors'
+}
+
+var myRequest = new Request("http://128.199.76.9:8002/bbq923/todo", myInit);
+
+fetch(myRequest).then(function(response) {
+	return response.json();
+}).then(function(data) {
+    console.log(data);
+    document.getElementById("todo-list").innerHTML = template(data);
+}).catch(function(err) {
+	// Error :(
+});
