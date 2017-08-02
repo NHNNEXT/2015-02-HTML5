@@ -4,6 +4,7 @@
 *.patch
 .DS_Store
 .settings
+.idea
 node_modules
 *.min.js
 TODO

@@ -1,0 +1,4 @@
+.todo-block {
+    transition-property: opacity;
+    transition-duration: 1s;
+}
