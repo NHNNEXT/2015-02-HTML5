@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<title>HTML5 Programming - 1 Class</title>
 		<link rel="stylesheet" href="asset/base.css">
+		<!--<link rel="stylesheet" href="resource/css/transition.css">-->
 		<script type="text/javascript" src="asset/todolist.js"></script>
 	</head>
 	<body>
@@ -16,26 +17,6 @@
 				<input id="toggle-all" type="checkbox">
 				<label for="toggle-all">Mark all as complete</label>
 				<ul id="todo-list">
-<!-- 
-					#완료했을때
-					<li class="completed">
-						<div class="view">
-							<input class="toggle" type="checkbox" checked>
-							<label>타이틀</label>
-							<button class="destroy"></button>
-						</div>
-					</li>
-
-					#일반 TODO
-					<li class="{}">
-						<div class="view">
-							<input class="toggle" type="checkbox" {}>
-							<label>타이틀</label>
-							<button class="destroy"></button>
-						</div>
-					</li>
- -->
-
 				</ul>
 			</section>
 			<footer id="footer">
@@ -60,5 +41,30 @@
 			<p>Refactored by <a href="https://github.com/cburgmer">Christoph Burgmer</a></p>
 			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
 		</footer>
+		<script type="text/html" id="completed">
+					#완료했을때
+					<li class="completed">
+						<div class="view">
+							<input class="toggle" type="checkbox" checked>
+							<label>타이틀</label>
+							<button class="destroy"></button>
+						</div>
+					</li>
+		</script>
+		<script type="text/x-handlebars-template" id="todo-template">
+            {{#todo}}
+            <li class="todo-block" id={{id}}>
+                <div class="view">
+                    <input class="toggle" type="checkbox" {}>
+                    <label>{{title}}</label>
+                    <button class="destroy"></button>
+                </div>
+            </li>
+            {{/todo}}
+		</script>
+		<script src="handlebars-v4.0.10.js"></script>
+		<script type="text/javascript" src="bower_components/handlebars/handlebars.min.js"></script>
+		<!--<script type="text/javascript" src="resource/js/todo.js"></script>-->
+		<script type="text/javascript" src="bundle.js"></script>
 	</body>
 </html>
